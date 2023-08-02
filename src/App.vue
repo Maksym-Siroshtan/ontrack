@@ -1,48 +1,13 @@
 <script setup>
-import { CheckCircleIcon } from '@heroicons/vue/24/solid'
-import { ClockIcon, ListBulletIcon, ChartBarIcon } from '@heroicons/vue/24/outline'
-const navIcons = {
-  timeline: ClockIcon,
-  activities: ListBulletIcon,
-  progress: ChartBarIcon
-}
+import TheHeader from "./components/TheHeader.vue"
+import TheNav from "./components/TheNav.vue"
 </script>
 
 <template>
-  <header class="sticky top-0 z-20 flex items-center p-3 justify-between bg-white">
-    <a href="#">
-      <img src="./assets/img/logo.png" alt="Logo" class="h-9" />
-    </a>
-    <a href="#">
-      <div v-if="true" class="flex items-center gap-1">
-        Day complete!
-        <CheckCircleIcon class="h-7 text-green-500" />
-      </div>
-      <div v-else class="flex items-center gap-1">
-        <div>Progress: <span class="font-mono">20%</span></div>
-        <div class="h-3 w-3 rounded-full bg-red-500"></div>
-      </div>
-    </a>
-  </header>
+  <TheHeader /> <!-- Рекомендовано добавлять приставку "The" к названию компонента, если он будет использован только один раз -->
 
-  <main class="flex flex-grow flex-col">
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti at expedita in sapiente nam
-    quidem iusto explicabo minima voluptas obcaecati.
+  <main class="flex flex-grow flex-col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste porro, placeat, odio voluptatibus tempore cumque architecto consequuntur rerum illo exercitationem laudantium reprehenderit obcaecati quisquam atque voluptates assumenda molestias eaque. Adipisci aliquid ad accusantium expedita odit corporis itaque culpa, a illum assumenda reiciendis ipsum porro. Ad veniam maiores nesciunt. Eos asperiores atque deserunt itaque accusamus quos delectus perspiciatis, odit tempore totam expedita, quia earum exercitationem doloribus eligendi veritatis perferendis quisquam repellendus velit excepturi eveniet ea! Repudiandae hic quia quas blanditiis tenetur dignissimos nobis, tempora optio adipisci animi consectetur voluptatum perspiciatis! Saepe debitis harum hic iste minima tenetur voluptas dolorem tempora labore, a est laboriosam facilis perspiciatis qui alias dolor? Minima eligendi sit accusamus repudiandae! Deserunt minima, cupiditate blanditiis hic vel, debitis dignissimos eligendi magni maxime autem tenetur molestiae adipisci fugit optio aliquid praesentium veritatis perferendis impedit nesciunt tempore quaerat harum ducimus sunt earum. Maiores asperiores inventore consequatur aspernatur incidunt hic sapiente eaque ex, non commodi cumque autem perferendis dolorum quae sunt repellat quis perspiciatis? Consectetur repellat, hic sed architecto maxime explicabo provident magnam voluptatem, voluptate aperiam quo perferendis cumque molestiae quas voluptas? Officiis ipsa iste ab incidunt. Cum fuga veniam omnis et, facilis dolore, architecto numquam voluptatum perspiciatis porro at maxime distinctio tempore voluptate dignissimos velit? Aliquid id harum voluptates possimus iusto, dolorum distinctio reprehenderit facilis, perferendis reiciendis nesciunt commodi tenetur necessitatibus, soluta pariatur nostrum? Dolorum distinctio sapiente sequi illum incidunt, reprehenderit, voluptate est voluptatibus saepe ullam ratione culpa praesentium explicabo odit a, id autem soluta nisi iure labore asperiores laudantium nemo. Quibusdam ducimus incidunt sunt vitae ratione veniam cum cupiditate velit alias eos minima libero quia doloribus impedit distinctio totam porro tenetur expedita, earum possimus vero praesentium maiores. At corporis hic, eos quas deleniti explicabo, repudiandae saepe architecto earum distinctio perferendis quibusdam neque sapiente? Cumque similique doloremque optio fugit quia, atque dolorum recusandae ipsam deleniti. Maxime, cum veniam. Incidunt veritatis ea optio corrupti corporis enim velit obcaecati sunt fuga, deserunt architecto, ab accusantium? Illo, obcaecati aliquam maiores enim consectetur distinctio saepe, repellendus libero consequuntur consequatur sapiente explicabo eum id quia? Tempora illo doloribus culpa molestiae sunt inventore, qui suscipit fugit voluptatibus dicta! Exercitationem, libero modi dignissimos ratione esse unde nostrum error aspernatur ex ea quibusdam eius incidunt maxime, beatae at hic facilis. Eius vitae doloremque id earum saepe, eos maiores recusandae modi animi officiis perferendis soluta. Quis voluptates repellendus, excepturi in deleniti minus eum est nostrum necessitatibus placeat minima iusto aspernatur dignissimos, voluptatum quaerat saepe ut! Voluptates ab error pariatur placeat illum, reiciendis voluptatum recusandae. Nisi cupiditate, libero cum maxime itaque similique, molestias consectetur ipsa molestiae, nam vitae? Explicabo voluptas, voluptatum accusantium quaerat accusamus sint iure. Quidem minima fuga assumenda, ratione quia saepe nulla rerum laborum aspernatur est doloremque a velit ipsa excepturi architecto nemo nesciunt ex perferendis, necessitatibus illum tenetur tempora dolores veniam. Non, odio libero! Ipsam placeat officia, fuga sequi quasi suscipit reiciendis. Pariatur debitis deserunt, maxime necessitatibus laboriosam amet beatae vero soluta itaque dolore quae cumque eaque eveniet repudiandae dolorum sit, vel reprehenderit delectus vitae similique provident excepturi nemo quas. Provident, quo accusantium? Aliquam officiis, sint saepe non iste veniam amet incidunt labore accusamus corrupti? Architecto saepe tempora porro ea ut, recusandae incidunt, magnam maxime doloribus magni beatae accusantium sint, doloremque earum. Ratione mollitia et quo aperiam nam dolorem excepturi amet molestiae, saepe, obcaecati in explicabo officia praesentium quae incidunt ex, perferendis est sint reiciendis earum. Odit quisquam, placeat sequi veritatis in saepe nulla sed a repellendus id eaque qui ipsa deserunt quis ipsum dolores. Quam, impedit iste saepe cum beatae placeat quia autem atque blanditiis suscipit? Vero animi perferendis, sed sunt molestiae reiciendis, dignissimos corporis iste minus id architecto distinctio, ratione in. Placeat, eligendi labore distinctio possimus iste pariatur! Odio, nesciunt quasi reprehenderit nobis accusantium enim commodi? Asperiores enim, cupiditate quae tenetur nihil dicta dolor quibusdam nesciunt, reiciendis odio blanditiis vel autem, temporibus ducimus neque cum! Tempore accusamus ipsum quo temporibus tenetur perspiciatis totam, rerum sint, veritatis nobis quasi quisquam aliquam sed delectus! Fugiat et libero omnis eaque accusamus, nisi doloribus dolores corrupti ullam perferendis assumenda iure, facere debitis ratione id nihil eveniet recusandae sint possimus! Eveniet temporibus magni dolorem facere eos nostrum ut eligendi incidunt similique adipisci! Modi, aliquam nobis? Perferendis, quas sequi dolore itaque odit doloribus a sunt voluptates deleniti commodi tenetur unde ipsum debitis distinctio adipisci provident minus velit sapiente accusamus dolores consectetur! Et, exercitationem consectetur quae dolorem assumenda culpa molestiae eius harum vero sit earum, deleniti, vel nostrum perspiciatis possimus repellat consequatur laudantium? Maiores placeat earum vero officiis, distinctio delectus, reprehenderit possimus excepturi iure laboriosam impedit fugit alias dolorem ab non unde quaerat quidem eveniet cumque. Iusto porro consequatur eligendi labore accusamus laudantium laboriosam quasi consectetur delectus incidunt voluptas veritatis, repellat facere praesentium sit, aliquam dicta sed, nemo iste officia cum. Optio fugit quam dolor cumque veniam iure tempore dolorum, ipsa perspiciatis?
   </main>
-  <nav class="sticky bottom-0 z-10 bg-white text-3xl">
-    <ul class="flex items-center justify-around border-t">
-      <li
-        v-for="icon, page in navIcons"
-        :key="page"
-        class="flex-1"
-      >
-        <a
-          class="flex flex-col items-center p-2 text-xs capitalize"
-          :href="`#${item}`"
-        >
-          <component :is="icon" class="h-6 w-6" /> {{ page }}
-        </a>
-      </li>
-    </ul>
-  </nav>
+
+  <TheNav/>
 </template>

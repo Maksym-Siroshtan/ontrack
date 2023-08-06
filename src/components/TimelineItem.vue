@@ -1,10 +1,14 @@
 <script setup>
+import { HOUR_IN_DAY } from '../constants'
 import BaseSelect from './BaseSelect.vue'
 
 const props = defineProps({
   timelineItem: {
     required: true,
-    type: Object
+    type: Object,
+    validator({ hour }) {
+      return typeof hour === 'number' && hour >= 0 && hour < HOUR_IN_DAY
+    }
   }
 })
 
@@ -26,6 +30,7 @@ const selectedActivityId = 1
 <template>
   <li class="relative flex flex-col gap-2 border-t border-gray-200 py-10 px-4">
     <a href="#" :class="hourLinkClasses"> {{ timelineItem.hour }}:00 </a>
-    <BaseSelect :selected="selectedActivityId" :options="options" placeholder="Rest"/> <!-- Приставка Base используется тогда, когда компонент является базовым и может быть переиспользован в разных местах приложения -->
+    <BaseSelect :selected="selectedActivityId" :options="options" placeholder="Rest" />
+    <!-- Приставка Base используется тогда, когда компонент является базовым и может быть переиспользован в разных местах приложения -->
   </li>
 </template>

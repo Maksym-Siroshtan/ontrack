@@ -1,7 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants'
-import { normalizePageHash } from './functions'
+import { normalizePageHash, generateTimelineItems } from './functions'
+const timelineItems = generateTimelineItems()
 import TheHeader from './components/TheHeader.vue'
 import TheTimeline from './pages/TheTimeline.vue'
 import TheActivities from './pages/TheActivities.vue'
@@ -20,7 +21,7 @@ function goTo(page) {
   <!-- Рекомендовано добавлять приставку "The" к названию компонента, если он будет использован только один раз -->
 
   <main class="flex flex-grow flex-col">
-    <TheTimeline v-show="currentPage === PAGE_TIMELINE" />
+    <TheTimeline v-show="currentPage === PAGE_TIMELINE" :timeline-items="timelineItems"/>
     <TheActivities v-show="currentPage === PAGE_ACTIVITIES" />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>

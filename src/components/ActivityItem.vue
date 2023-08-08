@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { TrashIcon } from '@heroicons/vue/24/outline'
-import { PERIOD_SELECT_OPTIONS } from '../constants'
+import { PERIOD_SELECT_OPTIONS, BUTTON_TYPE_DANGER } from '../constants'
 import { isActivityValid } from '../validators'
 
 import BaseButton from '../components/BaseButton.vue'
@@ -21,7 +21,7 @@ const secondsToComplete = ref(null)
 <template>
   <li class="flex flex-col gap-2 p-4">
     <div class="flex items-center gap-2">
-      <BaseButton>
+      <BaseButton :type="BUTTON_TYPE_DANGER">
         <TrashIcon class="h-8" />
       </BaseButton>
       <span class="text-xl truncate">{{ activity }}</span>

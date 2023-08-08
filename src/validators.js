@@ -44,6 +44,10 @@ export function isUndefinedOrNull(value) {
   return isUndefined(value) || isNull(value)
 }
 
+export function isUndefined(value) {
+  return value === undefined
+}
+
 function isNotEmptyString(value) {
   return isString(value) && value.length > 0
 }
@@ -58,10 +62,6 @@ function isNumber(value) {
 
 function isString(value) {
   return typeof value === 'string'
-}
-
-function isUndefined(value) {
-  return value === undefined
 }
 
 function isNull(value) {

@@ -20,3 +20,7 @@ export function generateTimelineItems() {
   }
   return timelineItems
 }
+
+export function generateActivitySelectOptions(activities) {
+  return activities.map((label, value) => ({ label, value }))
+}

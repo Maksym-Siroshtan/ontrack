@@ -8,6 +8,10 @@ export function isTimelineItemValid({ hour }) {
   return isHourValid(hour)
 }
 
+export function isHourValid(hour) {
+  return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOUR_IN_DAY - 1)
+}
+
 export function validateTimelineItems(timelineItems) {
   return timelineItems.every(isTimelineItemValid)
 }
@@ -22,10 +26,6 @@ export function isNumberOrNull(value) {
 
 export function isUndefinedOrNull(value) {
   return isUndefined(value) || isNull(value)
-}
-
-function isHourValid(hour) {
-  return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOUR_IN_DAY - 1)
 }
 
 function isSelectOptionsValid({ value, label }) {

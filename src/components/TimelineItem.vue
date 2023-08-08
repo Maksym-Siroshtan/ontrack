@@ -1,6 +1,7 @@
 <script setup>
+import { ref } from 'vue'
 import BaseSelect from './BaseSelect.vue'
-import { isTimelineItemValid } from '../validators';
+import { isTimelineItemValid } from '../validators'
 
 const props = defineProps({
   timelineItem: {
@@ -23,12 +24,17 @@ const options = [
   { value: 3, label: 'Training' }
 ]
 
-const selectedActivityId = 1
+const selectedActivityId = ref(1)
 </script>
 <template>
   <li class="relative flex flex-col gap-2 border-t border-gray-200 py-10 px-4">
     <a href="#" :class="hourLinkClasses"> {{ timelineItem.hour }}:00 </a>
-    <BaseSelect :selected="selectedActivityId" :options="options" placeholder="Rest" />
+    <BaseSelect
+      :selected="selectedActivityId"
+      :options="options"
+      placeholder="Rest"
+      @select="selectedActivityId = $event"
+    />
     <!-- Приставка Base используется тогда, когда компонент является базовым и может быть переиспользован в разных местах приложения -->
   </li>
 </template>

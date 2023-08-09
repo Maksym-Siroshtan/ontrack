@@ -16,9 +16,7 @@ defineProps({
 })
 
 const emit = defineEmits({
-  delete: {
-    validator: isUndefined
-  }
+  delete: isUndefined
 })
 
 const secondsToComplete = ref(null)

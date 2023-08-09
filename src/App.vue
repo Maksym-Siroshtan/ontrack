@@ -23,9 +23,7 @@ function goTo(page) {
 }
 
 function createActivity(activity) {
-  if (activity.length > 0) {
-    activities.value.push(activity)
-  }
+  activities.value.push(activity)
 }
 
 function deleteActivity(activity) {

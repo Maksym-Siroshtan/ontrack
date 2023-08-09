@@ -12,12 +12,8 @@ defineProps({
 })
 
 const emit = defineEmits({
-  createActivity: {
-    validator: isActivityValid
-  },
-  deleteActivity: {
-    validator: isActivityValid
-  }
+  createActivity: isActivityValid,
+  deleteActivity: isActivityValid
 })
 </script>
 

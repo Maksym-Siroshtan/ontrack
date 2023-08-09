@@ -28,7 +28,7 @@ const secondsToComplete = ref(null)
       <BaseButton :type="BUTTON_TYPE_DANGER" @click="emit('delete')">
         <TrashIcon class="h-8" />
       </BaseButton>
-      <span class="text-xl truncate">{{ activity }}</span>
+      <span class="text-xl truncate">{{ activity.name }}</span>
     </div>
     <div>
       <BaseSelect

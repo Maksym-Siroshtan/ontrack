@@ -20,8 +20,8 @@ export function isHourValid(hour) {
   return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOUR_IN_DAY - 1)
 }
 
-export function isActivityValid(activity) {
-  return isNotEmptyString(activity)
+export function isActivityValid({ id, name, secondsToComplete }) {
+  return [isNotEmptyString(id), isNotEmptyString(name), isNumber(secondsToComplete)].every(Boolean)
 }
 
 export function validateActivities(activities) {
@@ -33,7 +33,7 @@ export function validateSelectOptions(options) {
 }
 
 function isSelectOptionsValid({ value, label }) {
-  return isNumber(value) && isNotEmptyString(label)
+  return (isNumber(value) || isNotEmptyString(value)) && isNotEmptyString(label)
 }
 
 export function isNumberOrNull(value) {

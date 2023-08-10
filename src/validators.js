@@ -36,16 +36,24 @@ function isSelectOptionsValid({ value, label }) {
   return (isNumber(value) || isNotEmptyString(value)) && isNotEmptyString(label)
 }
 
-export function isNumberOrNull(value) {
-  return isNumber(value) || isNull(value)
-}
-
 export function isUndefinedOrNull(value) {
   return isUndefined(value) || isNull(value)
 }
 
+export function isSelectValueValid(value) {
+  return isNotEmptyString(value) || isNumberOrNull(value)
+}
+
+export function isNumberOrNull(value) {
+  return isNumber(value) || isNull(value)
+}
+
 export function isUndefined(value) {
   return value === undefined
+}
+
+export function isNull(value) {
+  return value === null
 }
 
 function isNotEmptyString(value) {
@@ -62,8 +70,4 @@ function isNumber(value) {
 
 function isString(value) {
   return typeof value === 'string'
-}
-
-function isNull(value) {
-  return value === null
 }

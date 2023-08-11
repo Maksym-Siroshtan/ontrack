@@ -56,16 +56,16 @@ export function isNull(value) {
   return value === null
 }
 
+export function isNumber(value) {
+  return typeof value === 'number'
+}
+
 function isNotEmptyString(value) {
   return isString(value) && value.length > 0
 }
 
 function isBetween(hour, start, end) {
   return hour >= start && hour <= end
-}
-
-function isNumber(value) {
-  return typeof value === 'number'
 }
 
 function isString(value) {

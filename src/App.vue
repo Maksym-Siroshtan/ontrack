@@ -15,7 +15,7 @@ import TheProgress from './pages/TheProgress.vue'
 import TheNav from './components/TheNav.vue'
 
 const currentPage = ref(normalizePageHash())
-const timelineItems = generateTimelineItems()
+const timelineItems = ref(generateTimelineItems())
 const activities = ref(generateActivities())
 const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
 
@@ -28,7 +28,7 @@ function createActivity(activity) {
 }
 
 function deleteActivity(activity) {
-  timelineItems.forEach((timelineItem) => {
+  timelineItems.value.forEach((timelineItem) => {
     if (timelineItem.activityId === activity.id) {
       timelineItem.activityId = null
     }
@@ -37,7 +37,7 @@ function deleteActivity(activity) {
 }
 
 function setTimelineItemActivity({ timelineItem, activity }) {
-  timelineItem.activityId = activity.id
+  timelineItem.activityId = activity?.id || null
 }
 </script>
 

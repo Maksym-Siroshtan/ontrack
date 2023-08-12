@@ -1,6 +1,5 @@
 <script setup>
 import { nextTick, ref, watchPostEffect } from 'vue'
-import TimelineItem from '../components/TimelineItem.vue'
 import { PAGE_TIMELINE, MIDNIGHT_HOUR } from '../constants'
 import {
   validateTimelineItems,
@@ -10,6 +9,8 @@ import {
   isActivityValid,
   isPageValid
 } from '../validators'
+
+import TimelineItem from '../components/TimelineItem.vue'
 
 const props = defineProps({
   timelineItems: {

@@ -50,6 +50,10 @@ function setTimelineItemActivity(timelineItem, activity) {
   timelineItem.activityId = activity.id
 }
 
+function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
+  timelineItem.activitySeconds += activitySeconds
+}
+
 function setActivitySecondsToComplete(activity, secondsToComplete) {
   activity.secondsToComplete = secondsToComplete
 }
@@ -67,6 +71,7 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
       :activities="activities"
       :current-page="currentPage"
       ref="timeline"
+      @update-timeline-item-activity-seconds="updateTimelineItemActivitySeconds"
       @set-timeline-item-activity="setTimelineItemActivity"
     />
     <TheActivities

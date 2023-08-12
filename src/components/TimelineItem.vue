@@ -5,7 +5,8 @@ import {
   validateSelectOptions,
   isHourValid,
   isActivityValid,
-  validateActivities
+  validateActivities,
+  isNumber
 } from '../validators'
 import BaseSelect from './BaseSelect.vue'
 import TimelineHour from './TimelineHour.vue'
@@ -30,6 +31,7 @@ const props = defineProps({
 })
 
 const emit = defineEmits({
+  updateActivitySeconds: isNumber,
   selectActivity: isActivityValid,
   scrollToHour: isHourValid
 })
@@ -44,7 +46,10 @@ function findActivityById(id) {
 </script>
 <template>
   <li class="relative flex flex-col gap-2 border-t border-gray-200 py-10 px-4">
-    <TimelineHour :hour="timelineItem.hour" @click.prevent="emit('scrollToHour', timelineItem.hour)" />
+    <TimelineHour
+      :hour="timelineItem.hour"
+      @click.prevent="emit('scrollToHour', timelineItem.hour)"
+    />
 
     <BaseSelect
       placeholder="Rest"
@@ -53,6 +58,10 @@ function findActivityById(id) {
       @select="selectActivity"
     />
     <!-- Приставка Base используется тогда, когда компонент является базовым и может быть переиспользован в разных местах приложения -->
-    <TimelineStopwatch :seconds="timelineItem.activitySeconds" :hour="timelineItem.hour" />
+    <TimelineStopwatch
+      :seconds="timelineItem.activitySeconds"
+      :hour="timelineItem.hour"
+      @update-seconds="emit('updateActivitySeconds', $event)"
+    />
   </li>
 </template>

@@ -51,6 +51,6 @@ function findActivityById(id) {
       @select="selectActivity"
     />
     <!-- Приставка Base используется тогда, когда компонент является базовым и может быть переиспользован в разных местах приложения -->
-    <TimelineStopwatch :seconds="timelineItem.activitySeconds" />
+    <TimelineStopwatch :seconds="timelineItem.activitySeconds" :hour="timelineItem.hour" />
   </li>
 </template>

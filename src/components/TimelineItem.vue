@@ -6,7 +6,6 @@ import {
   isHourValid,
   isActivityValid,
   validateActivities,
-  isNumber
 } from '../validators'
 import BaseSelect from './BaseSelect.vue'
 import TimelineHour from './TimelineHour.vue'
@@ -31,7 +30,6 @@ const props = defineProps({
 })
 
 const emit = defineEmits({
-  updateActivitySeconds: isNumber,
   selectActivity: isActivityValid,
   scrollToHour: isHourValid
 })
@@ -59,9 +57,7 @@ function findActivityById(id) {
     />
     <!-- Приставка Base используется тогда, когда компонент является базовым и может быть переиспользован в разных местах приложения -->
     <TimelineStopwatch
-      :seconds="timelineItem.activitySeconds"
-      :hour="timelineItem.hour"
-      @update-seconds="emit('updateActivitySeconds', $event)"
+      :timeline-item="timelineItem"
     />
   </li>
 </template>

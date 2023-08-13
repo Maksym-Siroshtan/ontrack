@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, provide } from 'vue'
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants'
 import {
   normalizePageHash,
@@ -19,6 +19,9 @@ const activities = ref(generateActivities())
 const timelineItems = ref(generateTimelineItems(activities.value))
 const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
 const timeline = ref()
+
+provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
+
 
 function goTo(page) {
   if (currentPage.value === PAGE_TIMELINE && page === PAGE_TIMELINE) {
@@ -71,7 +74,6 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
       :activities="activities"
       :current-page="currentPage"
       ref="timeline"
-      @update-timeline-item-activity-seconds="updateTimelineItemActivitySeconds"
       @set-timeline-item-activity="setTimelineItemActivity"
     />
     <TheActivities

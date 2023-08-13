@@ -5,7 +5,8 @@ import {
   normalizePageHash,
   generateTimelineItems,
   generateActivities,
-  generateActivitySelectOptions
+  generateActivitySelectOptions,
+  generatePeriodSelectOptions
 } from './functions'
 
 import TheHeader from './components/TheHeader.vue'
@@ -59,6 +60,7 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
 }
 
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
+provide('periodSelectOptions', generatePeriodSelectOptions())
 provide('activitySelectOptions', activitySelectOptions)
 provide('timelineItems', timelineItems.value)
 provide('activities', activities.value)

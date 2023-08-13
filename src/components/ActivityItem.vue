@@ -1,6 +1,7 @@
 <script setup>
+import { inject } from 'vue'
 import { TrashIcon } from '@heroicons/vue/24/outline'
-import { PERIOD_SELECT_OPTIONS, BUTTON_TYPE_DANGER } from '../constants'
+import { BUTTON_TYPE_DANGER } from '../constants'
 import { isActivityValid, isUndefined, isNumber } from '../validators'
 
 import BaseButton from './BaseButton.vue'
@@ -19,6 +20,8 @@ const emit = defineEmits({
   setSecondsToComplete: isNumber,
   delete: isUndefined
 })
+
+const periodSelectOptions = inject('periodSelectOptions')
 </script>
 
 <template>
@@ -32,7 +35,7 @@ const emit = defineEmits({
     <div class="flex gap-2">
       <BaseSelect
         placeholder="hh:mm"
-        :options="PERIOD_SELECT_OPTIONS"
+        :options="periodSelectOptions"
         :selected="activity.secondsToComplete || null"
         @select="emit('setSecondsToComplete', $event || 0)"
         class="font-mono grow"

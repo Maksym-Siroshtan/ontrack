@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, provide } from 'vue'
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants'
-import { timelineRef, currentPage, navigate } from './router'
+import { timelineRef, currentPage } from './router'
 import {
   generateTimelineItems,
   generateActivities,
@@ -56,19 +56,18 @@ provide('timelineItems', timelineItems.value)
 </script>
 
 <template>
-  <TheHeader @navigate="navigate" />
+  <TheHeader />
   <!-- Рекомендовано добавлять приставку "The" к названию компонента, если он будет использован только один раз -->
 
   <main class="flex flex-grow flex-col">
     <TheTimeline
       v-show="currentPage === PAGE_TIMELINE"
       :timeline-items="timelineItems"
-      :current-page="currentPage"
       ref="timelineRef"
     />
     <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities" />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
 
-  <TheNav :current-page="currentPage" @navigate="navigate" />
+  <TheNav />
 </template>

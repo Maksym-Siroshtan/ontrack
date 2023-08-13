@@ -62,6 +62,7 @@ function setTimelineItemActivity(timelineItem, activityId) {
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
 provide('setActivitySecondsToComplete', setActivitySecondsToComplete)
 provide('setTimelineItemActivity', setTimelineItemActivity)
+provide('createActivity', createActivity)
 provide('periodSelectOptions', generatePeriodSelectOptions())
 provide('activitySelectOptions', activitySelectOptions)
 provide('timelineItems', timelineItems.value)
@@ -81,7 +82,6 @@ provide('timelineItems', timelineItems.value)
     <TheActivities
       v-show="currentPage === PAGE_ACTIVITIES"
       :activities="activities"
-      @create-activity="createActivity"
       @delete-activity="deleteActivity"
     />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />

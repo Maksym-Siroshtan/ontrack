@@ -1,8 +1,8 @@
 <script setup>
 import { ref, computed, provide } from 'vue'
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants'
+import { timelineRef, currentPage, navigate } from './router'
 import {
-  normalizePageHash,
   generateTimelineItems,
   generateActivities,
   generateActivitySelectOptions,
@@ -15,23 +15,9 @@ import TheActivities from './pages/TheActivities.vue'
 import TheProgress from './pages/TheProgress.vue'
 import TheNav from './components/TheNav.vue'
 
-const currentPage = ref(normalizePageHash())
 const activities = ref(generateActivities())
 const timelineItems = ref(generateTimelineItems(activities.value))
 const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
-const timeline = ref()
-
-function goTo(page) {
-  if (currentPage.value === PAGE_TIMELINE && page === PAGE_TIMELINE) {
-    timeline.value.scrollToHour()
-  }
-
-  if (page !== PAGE_TIMELINE) {
-    document.body.scrollIntoView()
-  }
-
-  currentPage.value = page
-}
 
 function createActivity(activity) {
   activities.value.push(activity)
@@ -70,7 +56,7 @@ provide('timelineItems', timelineItems.value)
 </script>
 
 <template>
-  <TheHeader @navigate="goTo($event)" />
+  <TheHeader @navigate="navigate" />
   <!-- Рекомендовано добавлять приставку "The" к названию компонента, если он будет использован только один раз -->
 
   <main class="flex flex-grow flex-col">
@@ -78,11 +64,11 @@ provide('timelineItems', timelineItems.value)
       v-show="currentPage === PAGE_TIMELINE"
       :timeline-items="timelineItems"
       :current-page="currentPage"
-      ref="timeline"
+      ref="timelineRef"
     />
     <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities" />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
 
-  <TheNav :current-page="currentPage" @navigate="goTo($event)" />
+  <TheNav :current-page="currentPage" @navigate="navigate" />
 </template>

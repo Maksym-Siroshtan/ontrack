@@ -7,6 +7,7 @@ import { timelineRef, currentPage } from './router'
 import * as keys from './keys'
 import {
   updateTimelineItemActivitySeconds,
+  resetTimelineItemActivities,
   setTimelineItemActivity,
   timelineItems
 } from './timeline-items'
@@ -28,7 +29,10 @@ provide(keys.updateTimelineItemActivitySecondsKey, updateTimelineItemActivitySec
 provide(keys.setActivitySecondsToCompleteKey, setActivitySecondsToComplete)
 provide(keys.setTimelineItemActivityKey, setTimelineItemActivity)
 provide(keys.createActivityKey, createActivity)
-provide(keys.deleteActivityKey, deleteActivity)
+provide(keys.deleteActivityKey, (activity) => {
+  resetTimelineItemActivities(activity)
+  deleteActivity(activity)
+})
 provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions()))
 provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions))
 provide(keys.timelineItemsKey, readonly(timelineItems))

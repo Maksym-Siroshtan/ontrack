@@ -1,22 +1,15 @@
 <script setup>
-import { navigate, currentPage } from '../router'
 import { NAV_ITEMS } from '../constants'
 
-import NavItems from './NavItems.vue'
+import NavItem from './NavItem.vue'
 </script>
 
 <template>
   <nav class="sticky bottom-0 z-10 bg-white text-3xl">
     <ul class="flex items-center justify-around border-t">
-      <NavItems
-        v-for="(icon, page) in NAV_ITEMS"
-        :key="page"
-        :href="`#${page}`"
-        :class="{ 'bg-gray-200 pointer-events-none': page === currentPage }"
-        @click="navigate(page)"
-      >
+      <NavItem v-for="(icon, page) in NAV_ITEMS" :key="page" :page="page">
         <component :is="icon" class="h-6 w-6" /> {{ page }}
-      </NavItems>
+      </NavItem>
     </ul>
   </nav>
 </template>

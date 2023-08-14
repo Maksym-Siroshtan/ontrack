@@ -1,7 +1,8 @@
 <script setup>
-import { ref, computed, provide } from 'vue'
+import { ref, computed, provide, readonly } from 'vue'
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants'
 import { timelineRef, currentPage } from './router'
+import * as keys from './keys'
 import {
   generateTimelineItems,
   generateActivities,
@@ -45,14 +46,14 @@ function setTimelineItemActivity(timelineItem, activityId) {
   timelineItem.activityId = activityId
 }
 
-provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
-provide('setActivitySecondsToComplete', setActivitySecondsToComplete)
-provide('setTimelineItemActivity', setTimelineItemActivity)
-provide('createActivity', createActivity)
-provide('deleteActivity', deleteActivity)
-provide('periodSelectOptions', generatePeriodSelectOptions())
-provide('activitySelectOptions', activitySelectOptions)
-provide('timelineItems', timelineItems.value)
+provide(keys.updateTimelineItemActivitySecondsKey, updateTimelineItemActivitySeconds)
+provide(keys.setActivitySecondsToCompleteKey, setActivitySecondsToComplete)
+provide(keys.setTimelineItemActivityKey, setTimelineItemActivity)
+provide(keys.createActivityKey, createActivity)
+provide(keys.deleteActivityKey, deleteActivity)
+provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions()))
+provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions))
+provide(keys.timelineItemsKey, readonly(timelineItems.value))
 </script>
 
 <template>

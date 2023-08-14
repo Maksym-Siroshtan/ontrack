@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue'
+
 import { navigate, currentPage } from '../router'
 import { isNavItemValid } from '../validators'
 

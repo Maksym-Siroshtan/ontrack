@@ -1,12 +1,15 @@
 <script setup>
 import { nextTick, ref, inject } from 'vue'
-import { id } from '../functions'
 import { PlusIcon } from '@heroicons/vue/24/outline'
+
+import { createActivityKey } from '../keys'
+import { id } from '../functions'
+
 import BaseButton from './BaseButton.vue'
 
 const name = ref('')
 
-const createActivity = inject('createActivity')
+const createActivity = inject(createActivityKey)
 
 async function submit() {
   createActivity({

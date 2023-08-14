@@ -1,6 +1,6 @@
 <script setup>
 import { isTimelineItemValid, isUndefined } from '../validators'
-import { setTimelineItemActivity } from '../timeline-items'
+import { updateTimelineItem } from '../timeline-items'
 import { activitySelectOptions } from '../activities'
 
 import BaseSelect from './BaseSelect.vue'
@@ -27,7 +27,7 @@ const emit = defineEmits({
       placeholder="Rest"
       :selected="timelineItem.activityId"
       :options="activitySelectOptions"
-      @select="setTimelineItemActivity(timelineItem, $event)"
+      @select="updateTimelineItem(timelineItem, { activityId: $event })"
     />
     <!-- Приставка Base используется тогда, когда компонент является базовым и может быть переиспользован в разных местах приложения -->
     <TimelineStopwatch :timeline-item="timelineItem" />

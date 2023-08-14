@@ -36,7 +36,7 @@ provide(keys.createActivityKey, createActivity)
 provide(keys.deleteActivityKey, deleteActivity)
 provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions()))
 provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions))
-provide(keys.timelineItemsKey, readonly(timelineItems.value))
+provide(keys.timelineItemsKey, readonly(timelineItems))
 </script>
 
 <template>

@@ -8,15 +8,13 @@ import * as keys from './keys'
 import {
   updateTimelineItemActivitySeconds,
   resetTimelineItemActivities,
-  setTimelineItemActivity,
-  timelineItems
+  setTimelineItemActivity
 } from './timeline-items'
 import {
   setActivitySecondsToComplete,
   activitySelectOptions,
   createActivity,
-  deleteActivity,
-  activities
+  deleteActivity
 } from './activities'
 
 import TheHeader from './components/TheHeader.vue'
@@ -35,7 +33,6 @@ provide(keys.deleteActivityKey, (activity) => {
 })
 provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions()))
 provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions))
-provide(keys.timelineItemsKey, readonly(timelineItems))
 </script>
 
 <template>
@@ -43,12 +40,8 @@ provide(keys.timelineItemsKey, readonly(timelineItems))
   <!-- Рекомендовано добавлять приставку "The" к названию компонента, если он будет использован только один раз -->
 
   <main class="flex flex-grow flex-col">
-    <TheTimeline
-      v-show="currentPage === PAGE_TIMELINE"
-      :timeline-items="timelineItems"
-      ref="timelineRef"
-    />
-    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities" />
+    <TheTimeline v-show="currentPage === PAGE_TIMELINE" ref="timelineRef" />
+    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
 

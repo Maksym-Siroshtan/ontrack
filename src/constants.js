@@ -42,4 +42,6 @@ export const HOUR_IN_DAY = 24
 
 export const PERIOD_SELECT_OPTIONS = generatePeriodSelectOptions()
 
+export const LOW_PERCENT = 33
+export const MEDIUM_PERCENT = 66
 export const HUNDRED_PERCENT = 100

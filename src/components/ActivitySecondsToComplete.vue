@@ -14,8 +14,7 @@ const props = defineProps({
 })
 
 const classes = computed(
-  () =>
-    `flex items-center bg-purple-100 text-purple-600 rounded px-2 font-mono text-xl ${colorClasses.value}`
+  () => `flex items-center rounded px-2 font-mono text-xl ${colorClasses.value}`
 )
 
 const colorClasses = computed(() =>

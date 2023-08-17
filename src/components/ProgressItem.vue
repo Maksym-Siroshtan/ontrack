@@ -1,13 +1,17 @@
 <script setup>
 import { computed } from 'vue'
+import { formatSeconds, getProgressColorClass } from '../functions'
+import { getTotalActivitySeconds } from '../timeline-items'
 import { getActivityProgress } from '../activities'
-import { getProgressColorClass } from '../functions'
+import { isActivityValid } from '../validators'
 
-const props = defineProps(['activity', 'index'])
-
-const timeProgress = ['03:00 / 30:00', '15:00 / 30:00', '21:00 / 30:00', '30:00 / 30:00'][
-  props.index
-]
+const props = defineProps({
+  activity: {
+    required: true,
+    type: Object,
+    validator: isActivityValid
+  }
+})
 
 const progress = computed(() => getActivityProgress(props.activity))
 </script>
@@ -20,7 +24,11 @@ const progress = computed(() => getActivityProgress(props.activity))
     </div>
     <div class="flex justify-between font-mono text-sm">
       <span>{{ progress }}%</span>
-      <span>{{ timeProgress }}</span>
+      <span>{{
+        `${formatSeconds(getTotalActivitySeconds(activity))} / ${formatSeconds(
+          activity.secondsToComplete
+        )}`
+      }}</span>
     </div>
   </li>
 </template>

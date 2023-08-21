@@ -5,7 +5,7 @@ import { updateActivity, deleteActivity } from '../activities'
 import { isActivityValid } from '../validators'
 import { ICON_TRASH } from '../icons'
 
-import ActivitySecondsToComplete from './ActivitySecondsToComplete.vue'
+import RemainingActivitySeconds from './RemainingActivitySeconds.vue'
 import BaseButton from './BaseButton.vue'
 import BaseSelect from './BaseSelect.vue'
 import BaseIcon from './BaseIcon.vue'
@@ -40,7 +40,7 @@ function resetAndDeleteActivity(activity) {
         :selected="activity.secondsToComplete || null"
         @select="updateActivity(activity, { secondsToComplete: $event || 0 })"
       />
-      <ActivitySecondsToComplete v-if="activity.secondsToComplete" :activity="activity" />
+      <RemainingActivitySeconds v-if="activity.secondsToComplete" :activity="activity" />
     </div>
   </li>
 </template>

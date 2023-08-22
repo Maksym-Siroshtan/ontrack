@@ -1,16 +1,9 @@
 <script setup>
-import { ref, watch } from 'vue'
-
+import { BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING, BUTTON_TYPE_DANGER } from '../constants'
 import { ICON_ARROW_PATH, ICON_PAUSE, ICON_PLAY } from '../icons'
 import { currentHour, formatSeconds } from '../functions'
-import { updateTimelineItem } from '../timeline-items'
+import { useStopwatch } from '../composables/stopwatch'
 import { isTimelineItemValid } from '../validators'
-import {
-  BUTTON_TYPE_SUCCESS,
-  BUTTON_TYPE_WARNING,
-  BUTTON_TYPE_DANGER,
-  MILLISECONDS_IN_SECOND
-} from '../constants'
 
 import BaseButton from './BaseButton.vue'
 import BaseIcon from './BaseIcon.vue'
@@ -22,42 +15,7 @@ const props = defineProps({
     validator: isTimelineItemValid
   }
 })
-
-const seconds = ref(props.timelineItem.activitySeconds)
-const isRunning = ref(false)
-const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
-const temp = 120
-
-watch(
-  () => props.timelineItem.activityId,
-  () => updateTimelineItem(props.timelineItem, { activitySeconds: seconds.value })
-)
-
-function start() {
-  isRunning.value = setInterval(() => {
-    updateTimelineItem(props.timelineItem, {
-      activitySeconds: props.timelineItem.activitySeconds + temp
-    })
-
-    seconds.value += temp
-  }, MILLISECONDS_IN_SECOND)
-}
-
-function stop() {
-  clearInterval(isRunning.value)
-
-  isRunning.value = false
-}
-
-function reset() {
-  stop()
-
-  updateTimelineItem(props.timelineItem, {
-    activitySeconds: props.timelineItem.activitySeconds - seconds.value
-  })
-
-  seconds.value = 0
-}
+const { seconds, isRunning, start, stop, reset } = useStopwatch(props.timelineItem)
 </script>
 
 <template>
@@ -71,7 +29,12 @@ function reset() {
     <BaseButton v-if="isRunning" :type="BUTTON_TYPE_WARNING" @click="stop">
       <BaseIcon :name="ICON_PAUSE" />
     </BaseButton>
-    <BaseButton v-else :disabled="isStartButtonDisabled" :type="BUTTON_TYPE_SUCCESS" @click="start">
+    <BaseButton
+      v-else
+      :disabled="timelineItem.hour !== currentHour()"
+      :type="BUTTON_TYPE_SUCCESS"
+      @click="start"
+    >
       <BaseIcon :name="ICON_PLAY" />
     </BaseButton>
   </div>

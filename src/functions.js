@@ -9,10 +9,6 @@ import {
 
 import { isNull } from './validators'
 
-export function currentHour() {
-  return new Date().getHours()
-}
-
 export function formatSecondsWithSign(seconds) {
   return `${seconds.value >= 0 ? '+' : '-'}${formatSeconds(seconds)}`
 }

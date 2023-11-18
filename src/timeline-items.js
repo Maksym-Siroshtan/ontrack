@@ -39,7 +39,6 @@ export function scrollToHour(hour, isSmooth = true) {
 let timelineItemTimer = null
 
 export function startTimelineItemTimer(activeTimelineItem) {
-  console.log('start');
   timelineItemTimer = setInterval(() => {
     updateTimelineItem(activeTimelineItem, {
       activitySeconds: activeTimelineItem.activitySeconds + 1
@@ -48,8 +47,6 @@ export function startTimelineItemTimer(activeTimelineItem) {
 }
 
 export function stopTimelineItemTimer() {
-  console.log('stop');
-
   clearInterval(timelineItemTimer)
 }
 

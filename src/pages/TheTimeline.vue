@@ -1,6 +1,6 @@
 <script setup>
 import { onActivated, onDeactivated } from 'vue'
-import { startTimer, stopTimer } from '../time'
+import { startCurrentDateTimer, stopCurrentDateTimer } from '../time'
 import {
   scrollToCurrentHour,
   stopTimelineItemTimer,
@@ -16,10 +16,10 @@ stopTimelineItemTimer()
 onActivated(() => {
   scrollToCurrentHour()
 
-  startTimer()
+  startCurrentDateTimer()
 })
 
-onDeactivated(stopTimer)
+onDeactivated(stopCurrentDateTimer)
 </script>
 
 <template>

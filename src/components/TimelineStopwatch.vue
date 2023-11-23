@@ -9,7 +9,7 @@ import {
   stopTimelineItemTimer,
   resetTimelineItemTimer,
   timelineItemTimer
-} from '../timeline-items'
+} from '../timeline-item-timer'
 
 import BaseButton from './BaseButton.vue'
 import BaseIcon from './BaseIcon.vue'

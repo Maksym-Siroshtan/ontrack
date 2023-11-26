@@ -1,8 +1,8 @@
-import { APP_NAME, MILLISECONDS_IN_SECOND } from './constants'
-import { today, isToday, endOfHour, toSeconds } from './time'
-import { activeTimelineItem, timelineItems, resetTimelineItems } from './timeline-items'
+import { APP_NAME } from './constants'
+import { today } from './time'
+import { activeTimelineItem, timelineItems, initializeTimelineItems } from './timeline-items'
 import { startTimelineItemTimer, stopTimelineItemTimer } from './timeline-item-timer'
-import { activities } from './activities'
+import { activities, initializeActivities } from './activities'
 
 export function syncState(shouldLoad = true) {
   shouldLoad ? loadState() : saveState()
@@ -14,25 +14,18 @@ export function syncState(shouldLoad = true) {
   }
 }
 
-export function loadState() {
-  const serializedState = localStorage.getItem(APP_NAME)
+function loadState() {
+  const state = loadFromLocalStorage()
 
-  const state = serializedState ? JSON.parse(serializedState) : {}
-
-  activities.value = state.activities || activities.value
-
-  const lastActiveAt = new Date(state.lastActiveAt)
-
-  timelineItems.value = state.timelineItems ?? timelineItems.value
-
-  if (activeTimelineItem.value && isToday(lastActiveAt)) {
-    timelineItems.value = syncIdleSeconds(state.timelineItems, lastActiveAt)
-  } else if (state.timelineItems && !isToday(lastActiveAt)) {
-    timelineItems.value = resetTimelineItems(state.timelineItems)
-  }
+  initializeActivities(state)
+  initializeTimelineItems(state)
 }
 
-export function saveState() {
+function loadFromLocalStorage() {
+  return JSON.parse(localStorage.getItem(APP_NAME) ?? '{}')
+}
+
+function saveState() {
   localStorage.setItem(
     APP_NAME,
     JSON.stringify({
@@ -41,20 +34,4 @@ export function saveState() {
       lastActiveAt: today()
     })
   )
-}
-
-function syncIdleSeconds(timelineItems, lastActiveAt) {
-  const activeTimelineItem = timelineItems.find(({ isActive }) => isActive)
-
-  if (activeTimelineItem) {
-    activeTimelineItem.activitySeconds += calculateIdleSeconds(lastActiveAt)
-  }
-
-  return timelineItems
-}
-
-function calculateIdleSeconds(lastActiveAt) {
-  return lastActiveAt.getHours() === today().getHours()
-    ? toSeconds(today() - lastActiveAt) / MILLISECONDS_IN_SECOND
-    : toSeconds(endOfHour(lastActiveAt) - lastActiveAt)
 }
